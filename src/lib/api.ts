@@ -1,7 +1,7 @@
 import { toast } from "@/components/ui/use-toast";
 
 const API_KEY = '5133cb400267675bb5d5711c141ef126';
-const API_URL = 'https://api.breezway.com.br/instance/connect/instance';
+const API_URL = 'https://api.breezway.com.br/instance/connect/teste';
 
 export interface InstanceData {
   pairingCode: string;
