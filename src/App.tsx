@@ -1,4 +1,4 @@
-import { Providers } from './components/providers'
+import { Providers } from '@/components/Providers'
 import { AppRoutes } from './Routes'
 
 export const App = () => (
