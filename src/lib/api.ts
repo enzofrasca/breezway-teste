@@ -1,7 +1,7 @@
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
+import { getStoredUser } from "./auth";
 
 const API_KEY = '5133cb400267675bb5d5711c141ef126';
-const API_URL = 'https://api.breezway.com.br/instance/connect/teste';
 
 export interface InstanceData {
   pairingCode: string;
@@ -10,8 +10,13 @@ export interface InstanceData {
 }
 
 export async function connectInstance(): Promise<InstanceData> {
+  const user = getStoredUser();
+  if (!user) {
+    throw new Error("User not authenticated");
+  }
+
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`https://api.breezway.com.br/instance/connect/${user.username}`, {
       method: 'GET',
       headers: {
         apikey: API_KEY
@@ -25,11 +30,7 @@ export async function connectInstance(): Promise<InstanceData> {
     const data = await response.json();
     return data;
   } catch (error) {
-    toast({
-      variant: "destructive",
-      title: "Connection Error",
-      description: "Failed to connect to Breezway API. Please try again later.",
-    });
+    toast.error("Failed to connect to API. Please try again later.");
     throw error;
   }
 }
