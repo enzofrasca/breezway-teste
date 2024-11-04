@@ -19,7 +19,7 @@ const Index = () => {
       <div className="container max-w-7xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            Breezway QR Code Display
+            QR Code Display
           </h1>
           <p className="mt-4 text-lg text-gray-600">
             Real-time QR code connection status and monitoring
