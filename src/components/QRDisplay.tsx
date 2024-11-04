@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { StatusBadge } from "./StatusBadge";
 import { InstanceData } from "@/lib/api";
+import { QRCodeSVG } from "qrcode.react";
 
 interface QRDisplayProps {
   data: InstanceData | null;
@@ -26,13 +27,19 @@ export function QRDisplay({ data, status }: QRDisplayProps) {
           </div>
         ) : data ? (
           <div className="space-y-4">
-            <div className="text-sm font-medium text-gray-500">
+            <div className="flex justify-center">
+              <QRCodeSVG
+                value={data.pairingCode}
+                size={200}
+                level="H"
+                includeMargin
+                className="bg-white p-2 rounded"
+              />
+            </div>
+            <div className="text-sm font-medium text-center text-gray-500">
               Pairing Code: <span className="text-black">{data.pairingCode}</span>
             </div>
-            <div className="bg-white p-4 rounded border">
-              <pre className="text-xs overflow-auto">{data.code}</pre>
-            </div>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-gray-500 text-center">
               Connection count: {data.count}
             </div>
           </div>
